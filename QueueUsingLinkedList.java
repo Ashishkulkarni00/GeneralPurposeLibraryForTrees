@@ -1,5 +1,5 @@
 package projects;
-
+// Queueu using Linked-List and some basic Utility functions is implemented in this class...
 class LinkedList<T> {
 	T data;
 	LinkedList<T> next;
