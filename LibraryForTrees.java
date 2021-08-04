@@ -2,13 +2,13 @@ package projects;
 
 import java.util.ArrayList;
 import java.util.Scanner;
-
+// Used in isBST function of BinaryTreeNode class
 class pair1<T, V, S> {
 	T min;
 	V max;
 	S isBST;
 }
-
+//Generic TreeNode Class
 class TreeNode<T> {
 	T data;
 	ArrayList<TreeNode<T>> children;
@@ -24,11 +24,10 @@ class TreeNode<T> {
 	public T getData() {
 		return this.data;
 	}
-
-	// We created TreeNode class as generic but the utility functions are of
-	// "Integer" type, because for different type of inputs
-	// we need different types of scanner input functions hence for simplicity we
-	// made it Integer...
+	//TreeNode class is generic But the all the functions are made for Integers...
+	//Because for all different types of data we require differnt types of Scanner input function...
+	
+	// this method takes root as a input and return number of nodes present in the tree...
 	public int countNodesGenericTree(TreeNode<Integer> root) {
 		int ans = 0;
 		for (int i = 0; i < root.children.size(); i++) {
@@ -36,10 +35,9 @@ class TreeNode<T> {
 		}
 		return ans + 1;
 	}
-
+	// this method takes root of tree as a input and returns the height of the tree in terms of level of nodes in the tree
 	public int getHeightGenericTree(TreeNode<Integer> root) {
-		// according to edges
-		// if according nodes height is required then initialize max with 0...
+		
 		int ans = 0;
 		int max = 0;
 		for (int i = 0; i < root.children.size(); i++) {
@@ -50,7 +48,7 @@ class TreeNode<T> {
 		}
 		return 1 + max;
 	}
-
+	// this method is will take the input of a Generic tree in level-Wise fashion...and returns the root of the tree
 	public TreeNode<Integer> takeInputGenericTree() {
 		Scanner input = new Scanner(System.in);
 		System.out.println("Enter root data: ");
@@ -81,7 +79,7 @@ class TreeNode<T> {
 		}
 		return root;
 	}
-
+	// this method takes root as a input and prints the tree Nodes Level-wise
 	public void printGeneriTree(TreeNode<Integer> root) {
 		if (root == null) {
 			return;
@@ -110,7 +108,8 @@ class TreeNode<T> {
 		}
 	}
 }
-
+// GenericTreeNode class ends here--------------------------------------------------------------------------------------------------------------
+// BinaryTreeNode class begins here-------------------------------------------------------------------------------------------------------------
 class BinaryTreeNode<T> {
 	T data;
 	BinaryTreeNode<T> left;
@@ -128,7 +127,7 @@ class BinaryTreeNode<T> {
 	public T getData() {
 		return this.data;
 	}
-
+	// this method takes root as input and returns number of nodes present in the binary tree
 	public int countNodesBinaryTree(BinaryTreeNode<Integer> root) {
 		if (root == null) {
 			return 0;
@@ -137,7 +136,7 @@ class BinaryTreeNode<T> {
 		int right = countNodesBinaryTree(root.right);
 		return left + right + 1;
 	}
-
+	// this method taked root as a input and return the height of a BinaryTree
 	public int getHeightBinaryTree(BinaryTreeNode<Integer> root) {
 		if (root == null) {
 			return 0;
@@ -146,7 +145,7 @@ class BinaryTreeNode<T> {
 		int rightHeight = getHeightBinaryTree(root.right);
 		return 1 + Math.max(leftHeight, rightHeight);
 	}
-
+	// this function takes input of a binary Tree in level Wise fashion and returns the root of the tree...
 	public BinaryTreeNode<Integer> takeInputBinaryTree() {
 		Scanner input = new Scanner(System.in);
 		// data value of TreeNode = "-1" is a break point...
@@ -187,7 +186,7 @@ class BinaryTreeNode<T> {
 		}
 		return root;
 	}
-
+	// this method states whether the given Binary tree is Binary Search Tree or not...
 	private pair1<Integer, Integer, Boolean> isBSTHelper(BinaryTreeNode<Integer> root) {
 		if (root == null) {
 			pair1<Integer, Integer, Boolean> output = new pair1<Integer, Integer, Boolean>();
@@ -230,7 +229,7 @@ class BinaryTreeNode<T> {
 		pair1<Integer, Integer, Boolean> ans = isBSTHelper(root);
 		return ans.isBST;
 	}
-
+	//this method prints Binary tree Level Wise...
 	public void printBinayTree(BinaryTreeNode<Integer> root) {
 		if (root == null) {
 			return;
@@ -262,14 +261,7 @@ class BinaryTreeNode<T> {
 public class LibraryForTrees {
 
 	public static void main(String[] args) {
-
-		BinaryTreeNode<Integer> root = new BinaryTreeNode<Integer>();
-		BinaryTreeNode<Integer> Root = root.takeInputBinaryTree();
-		System.out.println("height = " + root.getHeightBinaryTree(Root));
-		System.out.println("isBST = " + root.isBST(Root));
-		System.out.println("Number of Nodes = " + root.countNodesBinaryTree(Root));
-		root.printBinayTree(Root);
-
+		// Create an object of respective Generic or Binary tree class and utilize the above utility functions...
 	}
 
 }
